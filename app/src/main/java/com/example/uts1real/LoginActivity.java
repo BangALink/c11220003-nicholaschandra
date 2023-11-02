@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText usernameEdit, passwordEdit;
-    private Button loginButton, registerButton;
+    private Button loginButton;
 
     private DBHelper dbHelper;
 
@@ -26,7 +26,6 @@ public class LoginActivity extends AppCompatActivity {
         usernameEdit = findViewById(R.id.usernameEdit);
         passwordEdit = findViewById(R.id.passwordEdit);
         loginButton = findViewById(R.id.loginButton);
-        registerButton = findViewById(R.id.registerButton);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,27 +46,6 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this, ContactListActivity.class);
                     intent.putExtra("NCLOL", username); // Gantilah "username" dengan data yang ingin Anda kirim
                     startActivity(intent);
-                }
-            }
-        });
-
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String username = usernameEdit.getText().toString().trim();
-                String password = passwordEdit.getText().toString().trim();
-
-                if (username.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Username and password are required", Toast.LENGTH_SHORT).show();
-                } else {
-                    String usernameEdit = "NCLOL";
-                    String passwordEdit = "00099";
-                    // Add the user to the database
-                    addUserToDatabase(username, password);
-
-                    // Show a success message
-                    Toast.makeText(LoginActivity.this, "User successfully registered", Toast.LENGTH_SHORT).show();
                 }
             }
         });
